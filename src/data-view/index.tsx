@@ -4,7 +4,7 @@ import { DataViewProps, DataType } from './types';
 import Pagination from '../pagination';
 
 const DataView = ({ data }: DataViewProps) => {
-  const pageSize = 5;
+  const pageSize = 20;
   const [page, setPage] = useState(1);
   const [dataGroup, setDataGroup] = useState([]);
 
