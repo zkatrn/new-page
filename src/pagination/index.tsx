@@ -1,7 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import './styles.scss';
-import { PaginationProps } from './types';
+import { PaginationProps, PageNumberProps } from './types';
 
+const PageNumber = ({ isActive, onPageChange, pageNum }: PageNumberProps) => (
+  <div
+    className={isActive ? 'active' : ''}
+    onClick={() => onPageChange(pageNum)}
+  >
+    {pageNum}
+  </div>
+);
+
+/**
+ * The comments assume totalPages is 20
+ */
 const Pagination = ({
   currentPage,
   totalPages,
@@ -13,7 +25,8 @@ const Pagination = ({
     /**
      * This `start` and `end` will handle pages in the
      * middle of the array, if `currentPage` is
-     * greater than 5 and less than totalPages - 4
+     * greater or equal to 5 and less than
+     * or equal to 16
      */
     let start = currentPage - 1;
     let end = currentPage + 1;
@@ -40,6 +53,7 @@ const Pagination = ({
 
     const _pageList = [];
 
+    /** Add pages to the array between start and end */
     for (let i = start; i <= end; i++) {
       _pageList.push(i);
     }
@@ -49,29 +63,41 @@ const Pagination = ({
 
   return (
     <div className="page-list">
-      <div
-        className={currentPage === 1 ? 'active' : ''}
-        onClick={() => onPageChange(1)}
-      >
-        1
-      </div>
-      {currentPage > 4 ? '...' : ''}
+      <PageNumber
+        isActive={currentPage === 1}
+        onPageChange={onPageChange}
+        pageNum={1}
+      />
+
+      {
+        /**
+         * Show ellipsis if currentPage greater or equal to 5,
+         * otherwise we want to show the numbers
+         */
+        currentPage >= 5 ? '...' : ''
+      }
+
       {pageList.map((page: number, i: number) => (
-        <div
-          className={currentPage === page ? 'active' : ''}
-          onClick={() => onPageChange(page)}
-        >
-          {page}
-        </div>
+        <PageNumber
+          isActive={currentPage === page}
+          onPageChange={onPageChange}
+          pageNum={page}
+        />
       ))}
 
-      {currentPage < totalPages - 3 ? '...' : ''}
-      <div
-        className={currentPage === totalPages ? 'active' : ''}
-        onClick={() => onPageChange(totalPages)}
-      >
-        {totalPages}
-      </div>
+      {
+        /**
+         * Show ellipsis if currentPage is less than or equal to 16
+         * Otherwise, we want to show the numbers
+         */
+        currentPage <= totalPages - 4 ? '...' : ''
+      }
+
+      <PageNumber
+        isActive={currentPage === totalPages}
+        onPageChange={onPageChange}
+        pageNum={totalPages}
+      />
     </div>
   );
 };
