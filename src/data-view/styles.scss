@@ -2,8 +2,8 @@
   text-align: left;
   .row {
     align-items: center;
-    display: flex;
     border-bottom: solid 1px #eeeeee;
+    display: flex;
     justify-content: space-between;
     padding: 10px 0;
 
@@ -18,8 +18,8 @@
         flex-basis: 150px;
         text-align: center;
         img {
-          width: auto;
           height: 50px;
+          width: auto;
         }
       }
     }
