@@ -2,15 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './styles.scss';
 import { PaginationProps, PageNumberProps } from './types';
 
-const PageNumber = ({ isActive, onPageChange, pageNum }: PageNumberProps) => (
-  <div
-    className={isActive ? 'active' : ''}
-    onClick={() => onPageChange(pageNum)}
-  >
-    {pageNum}
-  </div>
-);
-
 /**
  * The comments assume totalPages is 20
  */
@@ -63,11 +54,12 @@ const Pagination = ({
 
   return (
     <div className="page-list">
-      <PageNumber
-        isActive={currentPage === 1}
-        onPageChange={onPageChange}
-        pageNum={1}
-      />
+      <div
+        className={currentPage === 1 ? 'active' : ''}
+        onClick={() => onPageChange(1)}
+      >
+        1
+      </div>
 
       {
         /**
@@ -78,11 +70,12 @@ const Pagination = ({
       }
 
       {pageList.map((page: number, i: number) => (
-        <PageNumber
-          isActive={currentPage === page}
-          onPageChange={onPageChange}
-          pageNum={page}
-        />
+        <div
+          className={currentPage === page ? 'active' : ''}
+          onClick={() => onPageChange(page)}
+        >
+          {page}
+        </div>
       ))}
 
       {
@@ -93,11 +86,12 @@ const Pagination = ({
         currentPage <= totalPages - 4 ? '...' : ''
       }
 
-      <PageNumber
-        isActive={currentPage === totalPages}
-        onPageChange={onPageChange}
-        pageNum={totalPages}
-      />
+      <div
+        className={currentPage === totalPages ? 'active' : ''}
+        onClick={() => onPageChange(totalPages)}
+      >
+        {totalPages}
+      </div>
     </div>
   );
 };
