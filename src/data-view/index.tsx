@@ -27,7 +27,7 @@ const DataView = ({ data }: DataViewProps) => {
           <span>Thumbnail</span>
         </div>
 
-        {!!dataGroup?.length
+        {dataGroup?.length
           ? dataGroup[page - 1].map((item: DataType, i: number) => (
               <div className="row">
                 <span>{item.name}</span>
