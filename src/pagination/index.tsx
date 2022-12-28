@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './styles.scss';
-import { PaginationProps, PageNumberProps } from './types';
+import { PaginationProps } from './types';
 
 /**
  * The comments assume totalPages is 20
