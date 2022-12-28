@@ -1,0 +1,27 @@
+.table {
+  text-align: left;
+  .row {
+    align-items: center;
+    display: flex;
+    border-bottom: solid 1px #eeeeee;
+    justify-content: space-between;
+    padding: 10px 0;
+
+    &.titles {
+      border-color: #333333;
+      font-weight: bold;
+    }
+
+    span {
+      flex: 0 0 45%;
+      &:last-child {
+        flex-basis: 150px;
+        text-align: center;
+        img {
+          width: auto;
+          height: 50px;
+        }
+      }
+    }
+  }
+}

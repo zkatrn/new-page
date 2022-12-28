@@ -1,0 +1,22 @@
+.page-list {
+  align-items: flex-start;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  margin: 20px 0;
+
+  div {
+    text-decoration: underline;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    &.active {
+      color: red;
+      font-weight: bold;
+      pointer-events: none;
+      text-decoration: none;
+    }
+  }
+}
